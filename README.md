@@ -17,3 +17,24 @@ IMAGENETTE data set.
 augmentation techniques (rotation, flips, image intensity variation) and some more advanced 
 methods (MixUp, CutMix, and more). A substantial part of this project will be to explore, try, 
 and perhaps extend what’s out there for data augmentation in computer vision. 
+
+### What’s expected 
+At the project deadline, you'll hand in source code, documentation, and potentially other 
+artifacts from your work. Precisely what is partly up to you: 
+- Required: A link to a well-documented online Git repository containing all the code and 
+documentation necessary to understand and reproduce your work, including code to 
+create and run any applications you've made. You also must explain the larger context 
+to which your work belongs, for example, in a readme file in your repository. 
+- Recommended: An application running in the cloud or that can be installed on a 
+computer or a mobile device. The setup from Module 2 will get you quite far (Gradio + 
+HuggingFace Spaces or similar), but feel free to be more ambitious.  
+- Recommended: A blog post explaining the background of your project, its objectives, 
+what methods and data you used, and what you achieved. The post should target a 
+broad audience. For example, other software engineering students with little knowledge 
+of the application domain and the relevant methods. fastpages is a good blogging 
+solution.  
+
+
+### Tips when trying to reuse the code
+1. Download the Anaconda Navigator, which is a graphical user interface (GUI) included in the Anaconda distribution. It is used to easily create and manage Pythin environments, which are isolated spaces that contain specific versions of Python and its packages. Users can also search for and install new packages and libraries form the Anaconda repository, which includes a wide range of popular data science packages such as NumPy, Pandas, Scikit-learn, TensorFlow, and PyTorch. In our case we are using the following packages: ...
+
