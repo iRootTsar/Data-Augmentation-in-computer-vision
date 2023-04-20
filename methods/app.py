@@ -1,72 +1,82 @@
 import gradio as gr
 import torch
 import numpy as np
-from dataloader import *
-from torchvision.transforms import Compose, ToTensor
 from PIL import Image
 import os
-from dataloader import *
-
 import sys
+import h5py
 from pathlib import Path
+import matplotlib.pyplot as plt
+
+sys.path.append("Data-Augmentation-in-computer-vision/methods")
+import dataloader
 import nnmodel
 
-# Constructs a path to a directory that contains dataloader.py and plotCreator.py
-module_path = str(Path.cwd().parents[0] / "methods")
+os.chdir(os.path.join(os.getcwd(), "Data-Augmentation-in-computer-vision"))
+data_path0 = str(Path.cwd() / "data" / "BH_n4_M10_res50_15000_events.h5")
+data_path1 = str(Path.cwd() / "data" / "PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5")
 
-# Checks to see if the directory is already in sys.path to avoid adding it multiple times.
-if module_path not in sys.path:
-    sys.path.append(module_path)
-    
-# Creates two file paths pointing to two HDF5 files
-data_path0 = str(Path.cwd().parent / "data" / "BH_n4_M10_res50_15000_events.h5")
-data_path1 = str(Path.cwd().parent / "data" / "PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5")
+def get2dHistograms(path):
+    f = h5py.File(path)
+    keys = list(f.keys())
+    dataset = [f[key]["data"] for key in keys]
+    return dataset
 
+def dataToArray(path):
+    return np.array(get2dHistograms(path))
 
-# Reads the two HDF5 data files and creates two NumPy arrays
 bhArray = dataToArray(data_path0)
 sphArray = dataToArray(data_path1)
 
-# Define the possible image choices for the dropdown
-image_choices = [f"BH Image {i}" for i in range(len(bhArray))] + [f"Sphaleron Image {i}" for i in range(len(sphArray))]
-
-# Load the trained model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = nnmodel.SymmetricNet2(0.5).to(device)
-model_path = os.path.join(os.getcwd(), "models", "best_model.pth")
+model_path = str(Path.cwd() / "methods" / "models" / "best_model2.pth")
 
 model.load_state_dict(torch.load(model_path, map_location=device))
 
-def preprocess_image(input_image: Image.Image):
-    transforms = Compose([
-        ToTensor()
-    ])
-    img_tensor = transforms(input_image)
-    img_tensor = img_tensor.unsqueeze(0).to(device)
+def preprocess_image(input_image: np.ndarray):
+    input_image = np.expand_dims(input_image, axis=0)
+    input_image = np.moveaxis(input_image, -1, 1)
+    img_tensor = torch.from_numpy(input_image).float().to(device)
     return img_tensor
 
-def predict(input_image: str):
-    if input_image.startswith("BH"):
-        img_array = bhArray[int(input_image.split(" ")[-1])]
-    else:
-        img_array = sphArray[int(input_image.split(" ")[-1])]
-    
-    # Convert the image array to a PIL Image object
-    img = Image.fromarray(img_array)
-    
-    img_tensor = preprocess_image(img)
+def predict(input_image: Image.Image):
+    img_array = np.array(input_image)
+
+    img_tensor = preprocess_image(img_array)
     with torch.no_grad():
         output = model(img_tensor)
         _, prediction = torch.max(output, 1)
-    
+
     class_label = "Black Hole" if prediction.item() == 0 else "Sphaleron"
     return class_label
 
-# Define the input dropdown and output label
-image_input = gr.inputs.Dropdown(choices=image_choices, label="Select an image")
+def plot_random_images():
+    random_bh_indices = np.random.choice(range(len(bhArray)), 5)
+    random_sph_indices = np.random.choice(range(len(sphArray)), 5)
+
+    bh_sample = bhArray[random_bh_indices]
+    sph_sample = sphArray[random_sph_indices]
+
+    fig, axes = plt.subplots(nrows=1, ncols=5, figsize=(16, 6))
+    for i in range(5):
+        ax = axes[i]
+        ax.imshow(bh_sample[i], cmap='jet', vmin=0, vmax=255)
+        ax.axis('off')
+    plt.show()
+
+    fig, axes = plt.subplots(nrows=1, ncols=5, figsize=(16, 6))
+    for i in range(5):
+        ax = axes[i]
+        ax.imshow(sph_sample[i], cmap='jet', vmin=0, vmax=255)
+        ax.axis('off')
+    plt.show()
+
+plot_random_images()
+
+image_input = gr.inputs.Image(label="Select an image")
 label_output = gr.outputs.Label(num_top_classes=1)
 
-# Create the interface
-iface = gr.Interface(fn=predict, inputs=image_input, outputs=label_output, title="Image Classification", 
-                     description="Select an image from the dropdown menu and the classifier will predict whether it is a black hole or a sphaleron.")
+iface = gr.Interface(fn=predict, inputs=image_input, outputs=label_output, title="Image Classification",
+                     description="Upload a black hole or sphaleron image and the classifier will predict the class.")
 iface.launch()
