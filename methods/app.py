@@ -51,29 +51,6 @@ def predict(input_image: Image.Image):
     class_label = "Black Hole" if prediction.item() == 0 else "Sphaleron"
     return class_label
 
-def plot_random_images():
-    random_bh_indices = np.random.choice(range(len(bhArray)), 5)
-    random_sph_indices = np.random.choice(range(len(sphArray)), 5)
-
-    bh_sample = bhArray[random_bh_indices]
-    sph_sample = sphArray[random_sph_indices]
-
-    fig, axes = plt.subplots(nrows=1, ncols=5, figsize=(16, 6))
-    for i in range(5):
-        ax = axes[i]
-        ax.imshow(bh_sample[i], cmap='jet', vmin=0, vmax=255)
-        ax.axis('off')
-    plt.show()
-
-    fig, axes = plt.subplots(nrows=1, ncols=5, figsize=(16, 6))
-    for i in range(5):
-        ax = axes[i]
-        ax.imshow(sph_sample[i], cmap='jet', vmin=0, vmax=255)
-        ax.axis('off')
-    plt.show()
-
-plot_random_images()
-
 image_input = gr.inputs.Image(label="Select an image")
 label_output = gr.outputs.Label(num_top_classes=1)
 
