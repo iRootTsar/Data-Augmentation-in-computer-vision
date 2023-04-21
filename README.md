@@ -36,67 +36,67 @@ solution.
 
 ### Folder structure:
 
-C:Data-Augmenation-in-computer-vision
-│   README.md
-│   req.txt
-|
-├───data
-│       BH_n4_M10_res50_15000_events.h5
-│       PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5
-│       
-├───flagged
-│   │   log.csv
-│   │   
-│   ├───image
-│   │       tmp7s6x02be.png
-│   │       tmpdv9mt9tr.png
-│   │       
-│   ├───output
-│   │       tmp1re8hz8m.json
-│   │       tmp5whinqps.json
-│   │       
-│   └───output 0
-│           tmpf761f5br.json
-│           tmpvycvh8ue.json
-│
-├───methods
-│   │   app.py
-│   │   dataloader.py
-│   │   nnmodel.py
-│   │   plotCreator.py
-│   │   trainer.py
-│   │   trainer2.py
-│   │
-│   ├───models
-│   │       best_model.pth
-│   │       best_model2.pth
-│   │
-│   └───__pycache__
-│           dataloader.cpython-39.pyc
-│           nnmodel.cpython-39.pyc
-│           trainer2.cpython-39.pyc
-│
-└───notebooks
-    │   CrtImageFromh5toPNG.ipynb
-    │   TrainAndSave.ipynb
-    │   Start.ipynb
-    │   Testing.ipynb
-    │   TestOnDiffDataAugm.ipynb
+    C:Data-Augmenation-in-computer-vision
+    │   README.md
+    │   req.txt
     │
-    ├───models
-    │       best_model.pth
-    │       best_model2.pth
+    ├───data
+    │       BH_n4_M10_res50_15000_events.h5
+    │       PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5
+    │       
+    ├───flagged
+    │   │   log.csv
+    │   │   
+    │   ├───image
+    │   │       tmp7s6x02be.png
+    │   │       tmpdv9mt9tr.png
+    │   │       
+    │   ├───output
+    │   │       tmp1re8hz8m.json
+    │   │       tmp5whinqps.json
+    │   │       
+    │   └───output 0
+    │           tmpf761f5br.json
+    │           tmpvycvh8ue.json
     │
-    └───output
-        ├───black_holes
-        │       bh_0.png
-        │       ...
-        |       bh_99.png
+    ├───methods
+    │   │   app.py
+    │   │   dataloader.py
+    │   │   nnmodel.py
+    │   │   plotCreator.py
+    │   │   trainer.py
+    │   │   trainer2.py
+    │   │
+    │   ├───models
+    │   │       best_model.pth
+    │   │       best_model2.pth
+    │   │
+    │   └───__pycache__
+    │           dataloader.cpython-39.pyc
+    │           nnmodel.cpython-39.pyc
+    │           trainer2.cpython-39.pyc
+    │
+    └───notebooks
+        │   CrtImageFromh5toPNG.ipynb
+        │   TrainAndSave.ipynb
+        │   Start.ipynb
+        │   Testing.ipynb
+        │   TestOnDiffDataAugm.ipynb
         │
-        └───sphalerons
-                sph_0.png
-                ...
-                sph_99.png
+        ├───models
+        │       best_model.pth
+        │       best_model2.pth
+        │
+        └───output
+            ├───black_holes
+            │       bh_0.png
+            │       ...
+            │       bh_99.png
+            │
+            └───sphalerons
+                    sph_0.png
+                    ...
+                    sph_99.png
 
 
 ### Folder structure explained
