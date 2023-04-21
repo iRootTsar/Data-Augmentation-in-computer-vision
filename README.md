@@ -100,69 +100,70 @@ solution.
 
 
 ### Folder structure explained
-C:Data-Augmenation-in-computer-vision
-│   README.md (Readme file of the whole project explaining what, where, and how all works in a summarized way)
-│   req.txt (Contains all libraries and packages needed for Anaconda environment)
-│
-├───data
-│       BH_n4_M10_res50_15000_events.h5 (Data of black holes in h5 histogram format)
-│       PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5 (Data for sphalerons in h5 histograms format)
-│       
-├───flagged (Not important file, it's just something that is being created when you run code)
-│   │   log.csv
-│   │   
-│   ├───image
-│   │       tmp7s6x02be.png
-│   │       tmpdv9mt9tr.png
-│   │       
-│   ├───output
-│   │       tmp1re8hz8m.json
-│   │       tmp5whinqps.json
-│   │       
-│   └───output 0
-│           tmpf761f5br.json
-│           tmpvycvh8ue.json
-│
-├───methods
-│   │   app.py (app to start Gradio interface web application to load and submit images for classifying)
-│   │   dataloader.py (contains some plot and data loading functions for notebooks)
-│   │   nnmodel.py (where all our models reside)
-│   │   plotCreator.py
-│   │   trainer.py (training which returns plot of all trainings, perfect to train on 1 data set)
-│   │   trainer2.py (better train methods which returns all metrics that can be used to combine them in one smooth plot)
-│   │
-│   ├───models (these are our saved models)
-│   │       best_model.pth (SymmetricNet2)
-│   │       best_model2.pth (SymmetricNet2)
-│   │       best_model3.pth (VGGNet2)
-│   │
-│   └───__pycache__
-│           dataloader.cpython-39.pyc
-│           nnmodel.cpython-39.pyc
-│           trainer2.cpython-39.pyc
-│
-└───notebooks
-    │   CrtImageFromh5toPNG.ipynb (this notebook lets you create images from dataset, it's not the best but gives images that can be used more or less for Gradio app)
-    │   TrainAndSave.ipynb (here we train with all combined data augmentation techniques)
-    │   Start.ipynb (Just some start code we had in the beginning)
-    │   Testing.ipynb (Testing code on png images to see how it can classify images from png format)
-    │   TestOnDiffDataAugm.ipynb (Testing different data augmentation techniques with several runs and their average is then plotted to see what techniques change accuracy)
+
+    C:Data-Augmenation-in-computer-vision
+    │   README.md (Readme file of the whole project explaining what, where, and how all works in a summarized way)
+    │   req.txt (Contains all libraries and packages needed for Anaconda environment)
     │
-    ├───models (same as previous)
-    │       best_model.pth
-    │       best_model2.pth
-    |       best_model3.pth
+    ├───data
+    │       BH_n4_M10_res50_15000_events.h5 (Data of black holes in h5 histogram format)
+    │       PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5 (Data for sphalerons in h5 histograms format)
+    │       
+    ├───flagged (Not important file, it's just something that is being created when you run code)
+    │   │   log.csv
+    │   │   
+    │   ├───image
+    │   │       tmp7s6x02be.png
+    │   │       tmpdv9mt9tr.png
+    │   │       
+    │   ├───output
+    │   │       tmp1re8hz8m.json
+    │   │       tmp5whinqps.json
+    │   │       
+    │   └───output 0
+    │           tmpf761f5br.json
+    │           tmpvycvh8ue.json
     │
-    └───output (This is where our images reside)
-        ├───black_holes
-        │       bh_0.png
-        │       ...
-        │       bh_99.png
+    ├───methods
+    │   │   app.py (app to start Gradio interface web application to load and submit images for classifying)
+    │   │   dataloader.py (contains some plot and data loading functions for notebooks)
+    │   │   nnmodel.py (where all our models reside)
+    │   │   plotCreator.py
+    │   │   trainer.py (training which returns plot of all trainings, perfect to train on 1 data set)
+    │   │   trainer2.py (better train methods which returns all metrics that can be used to combine them in one smooth plot)
+    │   │
+    │   ├───models (these are our saved models)
+    │   │       best_model.pth (SymmetricNet2)
+    │   │       best_model2.pth (SymmetricNet2)
+    │   │       best_model3.pth (VGGNet2)
+    │   │
+    │   └───__pycache__
+    │           dataloader.cpython-39.pyc
+    │           nnmodel.cpython-39.pyc
+    │           trainer2.cpython-39.pyc
+    │
+    └───notebooks
+        │   CrtImageFromh5toPNG.ipynb (this notebook lets you create images from dataset, it's not the best but gives images that can be used more or less for Gradio app)
+        │   TrainAndSave.ipynb (here we train with all combined data augmentation techniques)
+        │   Start.ipynb (Just some start code we had in the beginning)
+        │   Testing.ipynb (Testing code on png images to see how it can classify images from png format)
+        │   TestOnDiffDataAugm.ipynb (Testing different data augmentation techniques with several runs and their average is then plotted to see what techniques change accuracy)
         │
-        └───sphalerons
-                sph_0.png
-                ...
-                sph_99.png
+        ├───models (same as previous)
+        │       best_model.pth
+        │       best_model2.pth
+        |       best_model3.pth
+        │
+        └───output (This is where our images reside)
+            ├───black_holes
+            │       bh_0.png
+            │       ...
+            │       bh_99.png
+            │
+            └───sphalerons
+                    sph_0.png
+                    ...
+                    sph_99.png
 
 
  
