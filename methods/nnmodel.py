@@ -293,7 +293,10 @@ class VGGNet2(nn.Module):
     def __init__(self, dropout):
         super(VGGNet2, self).__init__()
 
+        # Define the feature extraction part of the model with convolutional and pooling layers
         self.features = nn.Sequential(
+            
+            #Block 1
             nn.Conv2d(3, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
@@ -303,6 +306,7 @@ class VGGNet2(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Dropout(dropout),
 
+            #Block 2
             nn.Conv2d(64, 128, kernel_size=3, padding=1),
             nn.BatchNorm2d(128),
             nn.ReLU(inplace=True),
@@ -315,6 +319,7 @@ class VGGNet2(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Dropout(dropout),
 
+            #Block 3
             nn.Conv2d(128, 256, kernel_size=3, padding=1),
             nn.BatchNorm2d(256),
             nn.ReLU(inplace=True),
@@ -327,6 +332,7 @@ class VGGNet2(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2),
             nn.Dropout(dropout),
 
+            #Block 4
             nn.Conv2d(256, 512, kernel_size=3, padding=1),
             nn.BatchNorm2d(512),
             nn.ReLU(inplace=True),
@@ -354,18 +360,25 @@ class VGGNet2(nn.Module):
         )
 
     def forward(self, x):
+        # Apply data augmentation techniques during the forward pass
+        # (Shift, flip horizontally, and rotate)
+        # ...
+
         shift_amount = x.size(2) // 2  # shift the image by half of the height
         x_shifted = torch.roll(x, shift_amount, 2)  # roll the image along the y-axis
         x_flipped_horizontal = torch.flip(x, [3])  # flip horizontally
         x_rotated_180 = torch.rot90(x, 2, [2, 3])  # rotate 180
 
+        # Forward pass through feature extraction layers
         x = self.features(x)
         x_shifted = self.features(x_shifted)
         x_flipped_horizontal = self.features(x_flipped_horizontal)
         x_rotated_180 = self.features(x_rotated_180)
 
+        # Average the augmented feature maps
         x = (x + x_shifted + x_flipped_horizontal + x_rotated_180) / 4
 
+        # Reshape the tensor before feeding it to the classifier
         x = x.reshape(-1, 512 * 3 * 3)
         x = self.classifier(x)
         return x
