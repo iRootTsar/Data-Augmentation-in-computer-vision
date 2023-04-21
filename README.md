@@ -1,5 +1,5 @@
 # Data-Augmentation-in-computer-vision
-
+(Collaborators Sunniva Storetvedt Lothe and Vladimirs Civilgins
 ### Introduction
 As you’ve seen, a well-designed data augmentation setup is crucial for the efficient use of training data in deep learning. For image-based problems, several standard methods augment the training set, e.g., rotations, flips, translation, and more. However, there’s a continuous stream of research and development aimed at creating more advanced, and ideally more powerful, data augmentation techniques. This project will explore these developments and provide a careful setup for evaluating the many methods: their strengths and weaknesses. It will also attempt to clarify what problems and situations fit with what data augmentation techniques and assist other developers in their choice and design of data augmentation setups. 
 
