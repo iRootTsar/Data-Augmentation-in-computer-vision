@@ -100,17 +100,15 @@ solution.
 
 
 ### Folder structure explained
-Text in paranthesis explains what each file contains
-
 C:Data-Augmenation-in-computer-vision
-│   README.md (Readme file of whoel project explainign what where and how all works in summarized way)
-│   req.txt (Contains all libraries and packages needed for anaconda enviroment)
-|
+│   README.md (Readme file of the whole project explaining what, where, and how all works in a summarized way)
+│   req.txt (Contains all libraries and packages needed for Anaconda environment)
+│
 ├───data
-│       BH_n4_M10_res50_15000_events.h5   (Data of black holes in h5 histogram format)
-│       PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5  (Data for sphalerons in h5 histograms format)
+│       BH_n4_M10_res50_15000_events.h5 (Data of black holes in h5 histogram format)
+│       PP13-Sphaleron-THR9-FRZ15-NB0-NSUBPALL_res50_15000_events.h5 (Data for sphalerons in h5 histograms format)
 │       
-├───flagged (Not important file, its jsut osmethign that is being created when you run code)
+├───flagged (Not important file, it's just something that is being created when you run code)
 │   │   log.csv
 │   │   
 │   ├───image
@@ -126,17 +124,17 @@ C:Data-Augmenation-in-computer-vision
 │           tmpvycvh8ue.json
 │
 ├───methods
-│   │   app.py (app to start gradio interface web applciation to load and submit images for classifying)
-│   │   dataloader.py (contains some plot and dataloading functions for notebooks)
-│   │   nnmodel.py (where all our models resign)
-│   │   plotCreator.py 
+│   │   app.py (app to start Gradio interface web application to load and submit images for classifying)
+│   │   dataloader.py (contains some plot and data loading functions for notebooks)
+│   │   nnmodel.py (where all our models reside)
+│   │   plotCreator.py
 │   │   trainer.py (training which returns plot of all trainings, perfect to train on 1 data set)
 │   │   trainer2.py (better train methods which returns all metrics that can be used to combine them in one smooth plot)
 │   │
 │   ├───models (these are our saved models)
 │   │       best_model.pth (SymmetricNet2)
-│   │       best_model2.pth ------""--------
-|   |       best_model3.pth (VGGNet2)
+│   │       best_model2.pth (SymmetricNet2)
+│   │       best_model3.pth (VGGNet2)
 │   │
 │   └───__pycache__
 │           dataloader.cpython-39.pyc
@@ -144,26 +142,28 @@ C:Data-Augmenation-in-computer-vision
 │           trainer2.cpython-39.pyc
 │
 └───notebooks
-    │   CrtImageFromh5toPNG.ipynb (this notebook lets you create images from dataset, its not best but gives images taht can be used more or less for gradio app)
-    │   TrainAndSave.ipynb (here we train with all combined dataagumentaion techniques)
+    │   CrtImageFromh5toPNG.ipynb (this notebook lets you create images from dataset, it's not the best but gives images that can be used more or less for Gradio app)
+    │   TrainAndSave.ipynb (here we train with all combined data augmentation techniques)
     │   Start.ipynb (Just some start code we had in the beginning)
     │   Testing.ipynb (Testing code on png images to see how it can classify images from png format)
-    │   TestOnDiffDataAugm.ipynb (Testing different data augmentation techniques with several runs and their average is then plotted to see what techniques chages accuracy)
+    │   TestOnDiffDataAugm.ipynb (Testing different data augmentation techniques with several runs and their average is then plotted to see what techniques change accuracy)
     │
     ├───models (same as previous)
     │       best_model.pth
     │       best_model2.pth
+    |       best_model3.pth
     │
-    └───output (THis is where our images resign)
+    └───output (This is where our images reside)
         ├───black_holes
         │       bh_0.png
         │       ...
-        |       bh_99.png
+        │       bh_99.png
         │
         └───sphalerons
                 sph_0.png
                 ...
                 sph_99.png
+
 
  
 ### Tips when trying to reuse the code
