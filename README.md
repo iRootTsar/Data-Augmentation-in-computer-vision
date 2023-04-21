@@ -34,6 +34,16 @@ broad audience. For example, other software engineering students with little kno
 of the application domain and the relevant methods. fastpages is a good blogging 
 solution.  
 
+## The larger context:
+
+Data augmentation plays a vital role in improving the performance of neural networks, particularly when dealing with limited or imbalanced datasets. By generating additional training examples through various transformations, we can teach our models to be more robust and invariant to changes that may occur in real-world scenarios.
+
+This project contributes to the ongoing efforts in the field of computer vision and machine learning to develop more accurate and robust models for a wide range of applications. Our findings on the effectiveness of different data augmentation techniques can be valuable for researchers and practitioners working on similar problems in various domains.
+
+Furthermore, our project's specific focus on high-energy physics applications demonstrates the potential of machine learning and computer vision techniques in advancing scientific understanding and discovery.
+
+By sharing our code and findings in this repository, we hope to facilitate future research in this area and foster collaboration among researchers working on related problems.
+
 ### Folder structure:
 
     C:Data-Augmenation-in-computer-vision
